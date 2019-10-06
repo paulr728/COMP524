@@ -20,7 +20,7 @@ public class NotEvaluator implements Evaluator {
 			throw new IllegalStateException("Too many arguments for operator 'not'");
 		}
 		
-		SExpression H = expr.eval(environment);
+		SExpression H = expr.getHead().eval(environment);
 		
 		if(H instanceof NilAtom) {
 			return new TAtom();

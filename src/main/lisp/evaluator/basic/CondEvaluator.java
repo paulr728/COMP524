@@ -20,14 +20,14 @@ public class CondEvaluator implements Evaluator {
 		}
 		
 		// special case for (cond T) -> T
-		if(expr.getHead() instanceof TAtom && expr.getTail() instanceof NilAtom) {
-			return new TAtom();
-		}
-		
+//		if(expr.getHead() instanceof TAtom && expr.getTail() instanceof NilAtom) {
+//			return new TAtom();
+//		}
+//		
 		while(!(expr instanceof NilAtom)) {
 			SExpression newHead = expr.getHead();
 			if(newHead.getHead().eval(environment) instanceof TAtom) {
-				return newHead.getTail().eval(environment);
+				return newHead.getTail().getHead().eval(environment);
 			}
 			expr = expr.getTail();
 		}

@@ -6,12 +6,14 @@ import main.lisp.evaluator.basic.EvalEvaluator;
 import main.lisp.evaluator.basic.GEqEvaluator;
 import main.lisp.evaluator.basic.GreaterThanEvaluator;
 import main.lisp.evaluator.basic.LEqEvaluator;
+import main.lisp.evaluator.basic.LambdaEvaluator;
 import main.lisp.evaluator.basic.LessThanEvaluator;
 import main.lisp.evaluator.basic.ListEvaluator;
 import main.lisp.evaluator.basic.LoadEvaluator;
 import main.lisp.evaluator.basic.NotEvaluator;
 import main.lisp.evaluator.basic.OrEvaluator;
 import main.lisp.evaluator.basic.QuoteEvaluator;
+import main.lisp.evaluator.basic.SetqEvaluator;
 
 public class CustomOperationRegisterer extends BasicOperationRegisterer {
 
@@ -30,5 +32,8 @@ public class CustomOperationRegisterer extends BasicOperationRegisterer {
 		BuiltinOperationManagerSingleton.get().registerEvaluator("<=", new LEqEvaluator());
 		BuiltinOperationManagerSingleton.get().registerEvaluator(">=", new GEqEvaluator());
 		
+		// A2
+		BuiltinOperationManagerSingleton.get().registerEvaluator("setq", new SetqEvaluator());
+		BuiltinOperationManagerSingleton.get().registerEvaluator("lambda", new LambdaEvaluator());
 	}
 }

@@ -1,17 +1,21 @@
 package main;
 
 import main.lisp.evaluator.CustomOperationRegisterer;
+import main.lisp.evaluator.Environment;
 import main.lisp.evaluator.Evaluator;
 import main.lisp.evaluator.OperationRegisterer;
 import main.lisp.evaluator.basic.*;
-import main.lisp.parser.terms.NewBasicExpression;
+import main.lisp.evaluator.environment.MyEnvironment;
+import main.lisp.parser.terms.IdentifierAtom;
+import main.lisp.parser.terms.NewCompositeExpression;
 import main.lisp.parser.terms.SExpression;
-public class MyClassRegistry implements ClassRegistry{
+import main.lisp.parser.terms.MyIdentifierAtom;
+public class MyClassRegistry implements ClassRegistryA2{
 
 	@Override
 	public Class<?> getMain() {
 		// TODO Auto-generated method stub
-		return MyMain.class;
+		return MainA2.class;
 	}
 
 	@Override
@@ -23,7 +27,7 @@ public class MyClassRegistry implements ClassRegistry{
 	@Override
 	public Class<? extends SExpression> getStringFormattingSExpression() {
 		// TODO Auto-generated method stub
-		return NewBasicExpression.class;
+		return NewCompositeExpression.class;
 	}
 
 	@Override
@@ -96,6 +100,60 @@ public class MyClassRegistry implements ClassRegistry{
 	public Class<? extends Evaluator> getNotEvaluator() {
 		// TODO Auto-generated method stub
 		return NotEvaluator.class;
+	}
+
+	@Override
+	public Class<? extends OperationRegisterer> getAdditionalStatefulOperationRegisterer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getDefunEvaluator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getFuncallEvaluator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getFunctionEvaluator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends IdentifierAtom> getIdentifierAtomWithLookup() {
+		// TODO Auto-generated method stub
+		return MyIdentifierAtom.class;
+	}
+
+	@Override
+	public Class<? extends SExpression> getLambdaCallingSExpression() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getLambdaEvaluator() {
+		// TODO Auto-generated method stub
+		return LambdaEvaluator.class;
+	}
+
+	@Override
+	public Class<? extends Environment> getNestedLexicalEnvironment() {
+		// TODO Auto-generated method stub
+		return MyEnvironment.class;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getSetqEvaluator() {
+		// TODO Auto-generated method stub
+		return SetqEvaluator.class;
 	}
 
 }

@@ -17,7 +17,7 @@ public class EvalEvaluator implements Evaluator{
 		if(!(expr.getTail() instanceof NilAtom)) {
 			throw new IllegalStateException("Too many arguments for operator 'eval'");
 		}
-		SExpression ret = expr.eval(environment);
+		SExpression ret = expr.getHead().eval(environment);
 		return ret.eval(environment);
 	}
 

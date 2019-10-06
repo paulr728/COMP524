@@ -26,7 +26,7 @@ public class LEqEvaluator implements Evaluator {
 		}
 		
 		SExpression firstEvaled = expr.getHead().eval(environment);
-		SExpression secondEvaled = expr.getTail().eval(environment);
+		SExpression secondEvaled = expr.getTail().getHead().eval(environment);
 		
 		IntegerAtom firstInt = null;
 		IntegerAtom secondInt = null;

@@ -6,24 +6,19 @@ import main.lisp.evaluator.Evaluator;
 
 public class NewBasicExpression extends BasicExpression {
 
-	private final SExpression head;
-	private final SExpression tail;
-	
 	public NewBasicExpression(SExpression head, SExpression tail) {
 		super(head, tail);
 		// TODO Auto-generated constructor stub
-		this.head = head;
-		this.tail = tail;
 	}
 
 	@Override
 	public boolean isList() {
-		if(this.tail instanceof NilAtom) {
+		if(this.getTail() instanceof NilAtom) {
 			return true;
 		}
 		else
 		{
-			return this.tail.isList();
+			return this.getTail().isList();
 		}
 	}
 
