@@ -8,6 +8,7 @@ import main.lisp.evaluator.basic.*;
 import main.lisp.evaluator.environment.MyEnvironment;
 import main.lisp.parser.terms.IdentifierAtom;
 import main.lisp.parser.terms.NewCompositeExpression;
+import main.lisp.parser.terms.NewBasicExpression;
 import main.lisp.parser.terms.SExpression;
 import main.lisp.parser.terms.MyIdentifierAtom;
 public class MyClassRegistry implements ClassRegistryA2{
@@ -27,7 +28,7 @@ public class MyClassRegistry implements ClassRegistryA2{
 	@Override
 	public Class<? extends SExpression> getStringFormattingSExpression() {
 		// TODO Auto-generated method stub
-		return NewCompositeExpression.class;
+		return NewBasicExpression.class;
 	}
 
 	@Override
@@ -103,30 +104,6 @@ public class MyClassRegistry implements ClassRegistryA2{
 	}
 
 	@Override
-	public Class<? extends OperationRegisterer> getAdditionalStatefulOperationRegisterer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Class<? extends Evaluator> getDefunEvaluator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Class<? extends Evaluator> getFuncallEvaluator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Class<? extends Evaluator> getFunctionEvaluator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Class<? extends IdentifierAtom> getIdentifierAtomWithLookup() {
 		// TODO Auto-generated method stub
 		return MyIdentifierAtom.class;
@@ -135,7 +112,7 @@ public class MyClassRegistry implements ClassRegistryA2{
 	@Override
 	public Class<? extends SExpression> getLambdaCallingSExpression() {
 		// TODO Auto-generated method stub
-		return null;
+		return NewCompositeExpression.class;
 	}
 
 	@Override
@@ -154,6 +131,30 @@ public class MyClassRegistry implements ClassRegistryA2{
 	public Class<? extends Evaluator> getSetqEvaluator() {
 		// TODO Auto-generated method stub
 		return SetqEvaluator.class;
+	}
+
+	@Override
+	public Class<? extends OperationRegisterer> getAdditionalStatefulOperationRegisterer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getDefunEvaluator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getFuncallEvaluator() {
+		// TODO Auto-generated method stub
+		return FuncallEvaluator.class;
+	}
+
+	@Override
+	public Class<? extends Evaluator> getFunctionEvaluator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

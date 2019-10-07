@@ -17,20 +17,22 @@ public class AndEvaluator implements Evaluator {
 		if (expr instanceof NilAtom || expr.getHead() instanceof NilAtom || expr.getTail() instanceof NilAtom) {
 			throw new IllegalStateException("Missing arguments for operator 'and'");
 		}
+		SExpression firstEvaled = expr.getHead().eval(environment);
+//		if(!(expr.getTail().getTail().eval(environment) instanceof NilAtom)) {
+//			throw new IllegalStateException("Too many arguments for operator 'and'");
+//		}
 		
-		ArrayList<SExpression> exprList = new ArrayList<SExpression>();
-		
-		while(!(expr instanceof NilAtom) ) {
-			exprList.add(expr.getHead());
-			expr = expr.getTail();
-		}
-		
-		for(int i = 0; i < exprList.size(); ++i) {
-			if(exprList.get(i).eval(environment) instanceof NilAtom) {
+		if(!(firstEvaled instanceof NilAtom)) {
+			SExpression secondEvaled = expr.getTail().getHead().eval(environment);
+			if(secondEvaled instanceof NilAtom) {
 				return new NilAtom();
 			}
+			else 
+				return secondEvaled;
 		}
-		return new TAtom();
+		else {
+			return new NilAtom();
+		}
 	}
 
 }

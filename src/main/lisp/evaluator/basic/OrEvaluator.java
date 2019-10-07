@@ -20,7 +20,7 @@ public class OrEvaluator implements Evaluator {
 		}
 		if(numParams != 2) {
 			System.out.println("the number of input to operator and: " + numParams);
-			throw new IllegalStateException("Incorrect number of arguments for operator 'and'");
+			throw new IllegalStateException("Incorrect number of arguments for operator 'or'");
 		}
 		// TODO Auto-generated method stub
 		if(expr instanceof NilAtom) {

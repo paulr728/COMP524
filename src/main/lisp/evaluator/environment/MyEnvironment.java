@@ -18,8 +18,8 @@ public class MyEnvironment extends AbstractEnvironment {
 	@Override
 	public Optional<SExpression> lookup(IdentifierAtom id) {
 		// TODO Auto-generated method stub
-		Optional<SExpression> ret = super.getScope().get(id);
-		if(ret == null) ret = super.getParent().lookup(id);
+		Optional<SExpression> ret = this.getScope().get(id);
+		if(ret.isEmpty() && this.getParent() != null) ret = this.getParent().lookup(id);
 		return ret;
 	}
 
@@ -32,10 +32,10 @@ public class MyEnvironment extends AbstractEnvironment {
 	@Override
 	public void assign(IdentifierAtom id, SExpression value) {
 		// TODO Auto-generated method stub
-		if(super.getParent() == null || super.getParent().lookup(id) == null)
-			super.getScope().put(id, value);
+		if(this.getParent() == null || this.getParent().lookup(id).isEmpty())
+			this.getScope().put(id, value);
 		else
-			super.getParent().assign(id, value);
+			this.getParent().assign(id, value);
 	}
 
 	@Override
