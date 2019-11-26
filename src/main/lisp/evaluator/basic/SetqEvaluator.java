@@ -13,7 +13,7 @@ public class SetqEvaluator implements Evaluator {
 		// TODO Auto-generated method stub
 		expr = expr.getTail();
 		
-		if (expr instanceof NilAtom || expr.getHead() instanceof NilAtom || expr.getTail() instanceof NilAtom) {
+		if (expr instanceof NilAtom) {
 			throw new IllegalStateException("Missing arguments for operator 'setq'");
 		}
 		if (!(expr.getTail().getTail() instanceof NilAtom)) {
@@ -26,6 +26,7 @@ public class SetqEvaluator implements Evaluator {
 		
 		SExpression param = expr.getTail();
 		IdentifierAtom id = (IdentifierAtom)expr.getHead();
+		
 		SExpression ret = param.getHead().eval(environment);
 		environment.assign(id, ret);
 		return ret;

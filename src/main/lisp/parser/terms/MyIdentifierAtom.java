@@ -20,7 +20,7 @@ public class MyIdentifierAtom extends IdentifierAtom {
 		if(environment.lookup(this) == null)
 			return super.eval(environment);
 		else
-			return environment.lookup(this).get().eval(environment);
+			return environment.lookup(this).get();
 	}
 	
 

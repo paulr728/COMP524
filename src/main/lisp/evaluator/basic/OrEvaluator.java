@@ -12,18 +12,7 @@ public class OrEvaluator implements Evaluator {
 	public SExpression eval(SExpression expr, Environment environment) {
 		// TODO Auto-generated method stub
 		expr = expr.getTail();
-		SExpression param = expr.getTail();
-		int numParams = 1;
-		while(!(param instanceof NilAtom)) {
-			param = param.getTail();
-			numParams++;
-		}
-		if(numParams != 2) {
-			System.out.println("the number of input to operator and: " + numParams);
-			throw new IllegalStateException("Incorrect number of arguments for operator 'or'");
-		}
-		// TODO Auto-generated method stub
-		if(expr instanceof NilAtom) {
+		if (expr instanceof NilAtom) {
 			throw new IllegalStateException("Missing arguments for operator 'or'");
 		}
 		ArrayList<SExpression> exprList = new ArrayList<SExpression>();

@@ -14,25 +14,23 @@ public class AndEvaluator implements Evaluator {
 	public SExpression eval(SExpression expr, Environment environment) {
 		// TODO Auto-generated method stub
 		expr = expr.getTail();
-		if (expr instanceof NilAtom || expr.getHead() instanceof NilAtom || expr.getTail() instanceof NilAtom) {
+		if (expr instanceof NilAtom) {
 			throw new IllegalStateException("Missing arguments for operator 'and'");
 		}
-		SExpression firstEvaled = expr.getHead().eval(environment);
-//		if(!(expr.getTail().getTail().eval(environment) instanceof NilAtom)) {
-//			throw new IllegalStateException("Too many arguments for operator 'and'");
-//		}
+		ArrayList<SExpression> exprList = new ArrayList<SExpression>();
 		
-		if(!(firstEvaled instanceof NilAtom)) {
-			SExpression secondEvaled = expr.getTail().getHead().eval(environment);
-			if(secondEvaled instanceof NilAtom) {
+		while(!(expr instanceof NilAtom) ) {
+			exprList.add(expr.getHead());
+			expr = expr.getTail();
+		}
+		
+		for(int i = 0; i < exprList.size(); ++i) {
+			if(exprList.get(i).eval(environment) instanceof NilAtom) {
 				return new NilAtom();
 			}
-			else 
-				return secondEvaled;
 		}
-		else {
-			return new NilAtom();
-		}
+		return exprList.get(exprList.size() - 1).eval(environment);
+		
 	}
 
 }

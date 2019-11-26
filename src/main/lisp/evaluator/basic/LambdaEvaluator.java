@@ -24,16 +24,18 @@ public class LambdaEvaluator implements Evaluator {
 		}
 		IdentifierAtom[] argNames = null;
 		SExpression body = null;
+		body = expr.getTail();
 		
 		SExpression params = expr.getHead();
-		body = expr.getTail();
-		ArrayList<SExpression> listParams = new ArrayList<SExpression>();
-		listParams.add(params.getHead());
-		while(!(params.getTail() instanceof NilAtom )) {
-			params = params.getTail();
-			listParams.add(params.getHead());
-		}
 		
+		ArrayList<SExpression> listParams = new ArrayList<SExpression>();
+		if(!(params instanceof NilAtom)) {
+			listParams.add(params.getHead());
+			while(!(params.getTail() instanceof NilAtom )) {
+				params = params.getTail();
+				listParams.add(params.getHead());
+			}
+		}
 		argNames = new IdentifierAtom [listParams.size()];
 		TokenFactory.setTokenClass(TokenType.STRING, StringToken.class);
 		for(int i = 0; i < listParams.size(); ++i) {

@@ -26,22 +26,25 @@ public class MyEnvironment extends AbstractEnvironment {
 	@Override
 	public Optional<Function> lookupFun(IdentifierAtom id) {
 		// TODO Auto-generated method stub
-		return null;
+		Optional<Function> ret = this.getScope().getFun(id);
+		if(ret.isEmpty() && this.getParent() != null) ret = this.getParent().lookupFun(id);
+		return ret;
 	}
 
 	@Override
 	public void assign(IdentifierAtom id, SExpression value) {
 		// TODO Auto-generated method stub
-		if(this.getParent() == null || this.getParent().lookup(id).isEmpty())
-			this.getScope().put(id, value);
-		else
-			this.getParent().assign(id, value);
+		this.getScope().put(id, value);
+//		if(this.getParent() == null || this.getParent().lookup(id).isEmpty())
+//			
+//		else
+//			this.getParent().assign(id, value);
 	}
 
 	@Override
 	public void assignFun(IdentifierAtom id, Function value) {
 		// TODO Auto-generated method stub
-
+		getScope().putFun(id, value);
 	}
 
 	@Override
@@ -53,7 +56,7 @@ public class MyEnvironment extends AbstractEnvironment {
 	@Override
 	public Environment copy() {
 		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 }

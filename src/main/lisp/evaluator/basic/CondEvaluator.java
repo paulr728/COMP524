@@ -26,10 +26,11 @@ public class CondEvaluator implements Evaluator {
 //		
 		while(!(expr instanceof NilAtom)) {
 			SExpression newHead = expr.getHead();
-			if(newHead.getHead().eval(environment) instanceof TAtom) {
-				return newHead.getTail().getHead().eval(environment);
+			if(newHead.getHead().eval(environment) instanceof NilAtom) {
+				expr = expr.getTail();
+				continue;
 			}
-			expr = expr.getTail();
+			return newHead.getTail().getHead().eval(environment);
 		}
 		
 		return new NilAtom();
