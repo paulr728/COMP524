@@ -7,6 +7,8 @@ import main.lisp.evaluator.OperationRegisterer;
 import main.lisp.evaluator.basic.*;
 import main.lisp.evaluator.environment.MyEnvironment;
 import main.lisp.evaluator.parallel.args.ArgumentEvaluator;
+import main.lisp.evaluator.parallel.pool.BasicJoiner;
+import main.lisp.evaluator.parallel.pool.NewMutableJoiner;
 import main.lisp.evaluator.parallel.pool.ThreadPool;
 import main.lisp.evaluator.parallel.pool.ThreadPoolWorker;
 import main.lisp.parser.terms.IdentifierAtom;
@@ -63,7 +65,7 @@ public class MyClassRegistry implements ClassRegistryA4{
 	@Override
 	public Class<? extends Evaluator> getListEvaluator() {
 		// TODO Auto-generated method stub
-		return ListEvaluator.class;
+		return NewListEvaluator.class;
 	}
 
 	@Override
@@ -171,7 +173,7 @@ public class MyClassRegistry implements ClassRegistryA4{
 	@Override
 	public Class<? extends Evaluator> getDefunEvaluator() {
 		// TODO Auto-generated method stub
-		return null;
+		return DefunEvaluator.class;
 	}
 
 	@Override
@@ -225,7 +227,7 @@ public class MyClassRegistry implements ClassRegistryA4{
 	@Override
 	public Class<? extends Evaluator> getDefcurryEvaluator() {
 		// TODO Auto-generated method stub
-		return null;
+		return DefCurryEvaluator.class;
 	}
 
 	@Override
@@ -255,7 +257,7 @@ public class MyClassRegistry implements ClassRegistryA4{
 	@Override
 	public Class<? extends Evaluator> getEagerList() {
 		// TODO Auto-generated method stub
-		return null;
+		return NewListEvaluator.class;
 	}
 
 	@Override
@@ -279,13 +281,13 @@ public class MyClassRegistry implements ClassRegistryA4{
 	@Override
 	public Class<? extends Joiner> getImmutableJoiner() {
 		// TODO Auto-generated method stub
-		return null;
+		return BasicJoiner.class;
 	}
 
 	@Override
 	public Class<? extends MutableJoiner> getMutableJoiner() {
 		// TODO Auto-generated method stub
-		return null;
+		return NewMutableJoiner.class;
 	}
 
 	@Override

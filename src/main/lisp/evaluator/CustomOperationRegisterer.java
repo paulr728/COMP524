@@ -3,6 +3,7 @@ package main.lisp.evaluator;
 import main.lisp.evaluator.basic.AndEvaluator;
 import main.lisp.evaluator.basic.CondEvaluator;
 import main.lisp.evaluator.basic.CurryEvaluator;
+import main.lisp.evaluator.basic.DefCurryEvaluator;
 import main.lisp.evaluator.basic.DefunEvaluator;
 import main.lisp.evaluator.basic.EvalEvaluator;
 import main.lisp.evaluator.basic.FuncallEvaluator;
@@ -45,5 +46,6 @@ public class CustomOperationRegisterer extends BasicOperationRegisterer {
 		BuiltinOperationManagerSingleton.get().registerEvaluator("let", new LetEvaluator());
 		BuiltinOperationManagerSingleton.get().registerEvaluator("curry", new CurryEvaluator());
 		BuiltinOperationManagerSingleton.get().registerEvaluator("defun", new DefunEvaluator());
+		BuiltinOperationManagerSingleton.get().registerEvaluator("defcurry", new DefCurryEvaluator());
 	}
 }

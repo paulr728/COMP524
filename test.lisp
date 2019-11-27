@@ -148,3 +148,30 @@
 (defun curryableTraverse (v1 v2 exp)
   (funcall traverse exp v1 v2))
 (curryableTraverse one sum (list 2 (cons 4 5)))
+(defcurry curriedDisplay*ResultShort
+  (curry display SHORT_OUTPUT_EXPLANATION product))
+(curriedDisplay*ResultShort 2 5)
+(setevalmode "EAGER")
+(setEagerPool nil)
+(list
+     (progn
+        (printThread)
+        (sleep 1000)
+        (+ 1 2)
+       )
+     (progn
+       (printThread)
+       (- 2 1)
+       )
+  )
+(list
+     (progn
+        (printThread)
+        (+ 1 2)
+       )
+     (progn
+       (printThread)
+       (- 2 1)
+                      (sleep 1000)
+       )
+  )

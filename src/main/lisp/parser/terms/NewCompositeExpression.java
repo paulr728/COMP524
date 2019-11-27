@@ -51,6 +51,7 @@ public class NewCompositeExpression extends NewBasicExpression {
 			}
 			else if(!defFun.isEmpty() ) {
 				String errorMsg = "Incorrect arguments for operator 'def' evaluation";
+				
 				return EvaluateLambdaHelper( defFun.get().getLambda(), environment, errorMsg);
 			}
 			else {
