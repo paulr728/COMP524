@@ -215,7 +215,7 @@ public class MyClassRegistry implements ClassRegistryA4{
 	@Override
 	public Class<?> getClientMain() {
 		// TODO Auto-generated method stub
-		return null;
+		return Client.class;
 	}
 
 	@Override
@@ -293,7 +293,7 @@ public class MyClassRegistry implements ClassRegistryA4{
 	@Override
 	public Class<?> getServerMain() {
 		// TODO Auto-generated method stub
-		return null;
+		return Server.class;
 	}
 
 	@Override
