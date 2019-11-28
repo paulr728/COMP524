@@ -151,6 +151,23 @@
 (defcurry curriedDisplay*ResultShort
   (curry display SHORT_OUTPUT_EXPLANATION product))
 (curriedDisplay*ResultShort 2 5)
+(funcall (quote +) 1 6)
+(print "=======================task 6=======")
+(funcall (quote curryableTraverse)
+     one
+     sum
+     (list 2 (cons 4 5))  
+ )
+(funcall (quote curryableTraverse)
+     (quote one)
+     (quote sum)
+     (list 2 2 5(cons 4 5))  
+ )
+ (funcall (quote curryableTraverse)
+     (quote one)
+     (quote +)
+     (list 2 5 (cons 4 5))  
+ )
 (setevalmode "EAGER")
 (setEagerPool nil)
 (list

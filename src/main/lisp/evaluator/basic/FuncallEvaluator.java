@@ -1,11 +1,14 @@
 package main.lisp.evaluator.basic;
 
+import java.util.List;
 import java.util.Optional;
 
 import main.lisp.evaluator.Environment;
 import main.lisp.evaluator.Evaluator;
 import main.lisp.evaluator.function.Function;
 import main.lisp.evaluator.function.Lambda;
+import main.lisp.evaluator.parallel.args.ArgumentEvaluator;
+import main.lisp.parser.terms.ExpressionFactory;
 import main.lisp.parser.terms.IdentifierAtom;
 import main.lisp.parser.terms.NilAtom;
 import main.lisp.parser.terms.SExpression;
@@ -16,7 +19,17 @@ public class FuncallEvaluator implements Evaluator {
 	public SExpression eval(SExpression expr, Environment environment) {
 		// TODO Auto-generated method stub
 		SExpression fun = expr.getTail().getHead().eval(environment);
-		if(fun instanceof Lambda || fun instanceof Function) {
+		if(fun instanceof IdentifierAtom) {
+			SExpression ret = new NilAtom();
+			expr = expr.getTail();
+			List<SExpression> parts = ArgumentEvaluator.split(expr);
+			for(int i = parts.size() - 1; i > 0; --i) {
+				ret = ExpressionFactory.newInstance(parts.get(i), ret);
+			}
+			ret = ExpressionFactory.newInstance(fun, ret);
+			return ret.eval(environment);
+		}
+		else if(fun instanceof Lambda || fun instanceof Function) {
 			Lambda functionBody = null;
 			if(fun instanceof Function) {
 				functionBody = ((Function) fun).getLambda();
