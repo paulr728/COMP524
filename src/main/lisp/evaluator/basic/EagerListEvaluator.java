@@ -1,6 +1,7 @@
 package main.lisp.evaluator.basic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import main.LispInterpreterSettings;
@@ -32,19 +33,24 @@ public class EagerListEvaluator extends AbstractArgumentEvaluator {
 		// TODO Auto-generated method stub
 		if(arg0.size() == 0) return null;
 		List<SExpression> ret = new ArrayList<SExpression>();
+		SExpression[] retArray = new SExpression[arg0.size()];
 		Environment copyEnv = arg1.copy();
-		Joiner joiner = new BasicJoiner(arg0.size());
+		Joiner joiner = new BasicJoiner(arg0.size()-1);
 		for(int i = 1; i < arg0.size(); ++i) {
-			Thread t = new Thread(new SExpEvaluatorHelper(arg0, ret, i, joiner, copyEnv));
+			Thread t = new Thread(new SExpEvaluatorHelper(arg0, retArray, i, joiner, copyEnv));
 			t.setName(this.nextHelperClassEvalThreadName());
 			t.start();
 		}
-		ret.set(0, arg0.get(0).eval(copyEnv));
+		SExpression ret0 = arg0.get(0).eval(copyEnv);
 		try {
 			joiner.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		ret.add(ret0);
+		for(int i = 1; i < arg0.size(); ++i) {
+			ret.add(retArray[i]);
 		}
 		return ret;
 	}

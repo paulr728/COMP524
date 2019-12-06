@@ -152,7 +152,6 @@
   (curry display SHORT_OUTPUT_EXPLANATION product))
 (curriedDisplay*ResultShort 2 5)
 (funcall (quote +) 1 6)
-(print "=======================task 6=======")
 (funcall (quote curryableTraverse)
      one
      sum
@@ -168,27 +167,49 @@
      (quote +)
      (list 2 5 (cons 4 5))  
  )
-(setevalmode "EAGER")
-(setEagerPool nil)
-(list
-     (progn
-        (printThread)
-        (sleep 1000)
-        (+ 1 2)
-       )
-     (progn
-       (printThread)
-       (- 2 1)
-       )
-  )
-(list
-     (progn
-        (printThread)
-        (+ 1 2)
-       )
-     (progn
-       (printThread)
-       (- 2 1)
-                      (sleep 1000)
-       )
-  )
+(setq x 3)
+(setq y 5)
+(setq f (lambda (x)
+          (setq x 5) (+ x y)))
+(funcall f 2)
+(setq GV 10)
+(setq FreeVariableBindingTester
+      (let
+          ((LV 5))
+        (lambda (x y z) (setq z 2)
+          (cond
+           (and
+            (= x 13)
+            (= y 7)
+            (or
+             (= z 2)
+             (= GV 10)
+             )
+            (= LV 5)
+            ) 42
+              )
+          (T 1)
+          )
+          ))
+(setq LV 10)
+(setq x 2)
+(funcall FreeVariableBindingTester 13 7 100)
+(setq GV 15)
+(funcall FreeVariableBindingTester 13 7 100)
+(setDeepCopyFunctionEnvironment t)
+(setq GV 10)
+
+(setq LV 10)
+(setq x 2)
+(funcall FreeVariableBindingTester 13 7 100)
+(setq GV 15)
+(funcall FreeVariableBindingTester 13 7 100)
+(setDeepCopyFunctionEnvironment nil)
+(setq GV 2)
+(funcall FreeVariableBindingTester 13 7 100)
+(setq CurryFreeVariableBindingTester
+      (let
+          ((y 13))
+        (curry FreeVariableBindingTester y)
+        ))
+(funcall CurryFreeVariableBindingTester 7 10)

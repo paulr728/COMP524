@@ -19,6 +19,7 @@ public class LetEvaluator implements Evaluator {
 		SExpression declare = expr.getHead();
 		while(!(declare instanceof NilAtom)) {
 			SExpression var = declare.getHead();
+			childEnv.assign((IdentifierAtom) var.getHead(), new NilAtom());
 			childEnv.assign((IdentifierAtom) var.getHead(), var.getTail().eval(environment));
 			declare = declare.getTail();
 		}

@@ -16,6 +16,7 @@ import main.lisp.evaluator.basic.LessThanEvaluator;
 import main.lisp.evaluator.basic.LetEvaluator;
 import main.lisp.evaluator.basic.ListEvaluator;
 import main.lisp.evaluator.basic.LoadEvaluator;
+import main.lisp.evaluator.basic.NewListEvaluator;
 import main.lisp.evaluator.basic.NotEvaluator;
 import main.lisp.evaluator.basic.OrEvaluator;
 import main.lisp.evaluator.basic.QuoteEvaluator;
@@ -25,7 +26,7 @@ public class CustomOperationRegisterer extends BasicOperationRegisterer {
 
 	public static void registerAll() {
 		BasicOperationRegisterer.registerAll();
-		BuiltinOperationManagerSingleton.get().registerEvaluator("list", new ListEvaluator());
+		BuiltinOperationManagerSingleton.get().registerEvaluator("list", new NewListEvaluator());
 		BuiltinOperationManagerSingleton.get().registerEvaluator("quote", new QuoteEvaluator());
 		BuiltinOperationManagerSingleton.get().registerEvaluator("eval", new EvalEvaluator());
 		BuiltinOperationManagerSingleton.get().registerEvaluator("load", new LoadEvaluator());

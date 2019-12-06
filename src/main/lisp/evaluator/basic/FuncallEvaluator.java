@@ -63,6 +63,7 @@ public class FuncallEvaluator implements Evaluator {
 				if(realParams instanceof NilAtom) {
 					throw new IllegalStateException("Missing arguments for operator 'funcall' evaluation");
 				}
+				childEnv.assign(formalParams[i], new NilAtom());
 				childEnv.assign(formalParams[i], realParams.getHead().eval(environment));
 				realParams = realParams.getTail();
 			}

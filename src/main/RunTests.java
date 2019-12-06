@@ -6,7 +6,7 @@ import util.trace.Tracer;
 public class RunTests {
 	public static void main(String[] args) {
 		Tracer.showInfo(true);
-        GraderBasicsTraceUtility.setBufferTracedMessages(false);
+        GraderBasicsTraceUtility.setBufferTracedMessages(true);
 		Assignment4Suite.main(args);
 	}
 }

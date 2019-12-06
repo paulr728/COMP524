@@ -28,6 +28,7 @@ public class NewCompositeExpression extends NewBasicExpression {
 			if(realParams instanceof NilAtom) {
 				throw new IllegalStateException(errorMsg);
 			}
+			childEnv.assign(formalParams[i], new NilAtom());
 			childEnv.assign(formalParams[i], realParams.getHead().eval(environment));
 			realParams = realParams.getTail();
 		}
